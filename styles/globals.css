@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* App shell (moved here from the old inline <style jsx global>) */
+body { overflow: hidden; height: 100dvh; width: 100vw; }
+#__next { height: 100%; width: 100%; overflow: hidden; display: grid; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@layer components {
+  /* Surfaces – restrained, neutral, Apple-like */
+  .canvas  { @apply bg-[#F5F5F7] text-[#1D1D1F] dark:bg-black dark:text-[#F5F5F7]; }
+  .surface { @apply bg-white dark:bg-[#1C1C1E]; }
+  .surface-2 { @apply bg-black/[0.04] dark:bg-white/[0.08]; }
+  .card { @apply bg-white dark:bg-[#1C1C1E] rounded-[22px] shadow-card; }
+  .glass { @apply bg-white/[0.78] dark:bg-[#1C1C1E]/[0.78] backdrop-blur-xl backdrop-saturate-150; }
+
+  /* Text hierarchy */
+  .t2 { @apply text-black/55 dark:text-white/60; }
+  .t3 { @apply text-black/35 dark:text-white/40; }
+
+  /* Hairlines instead of heavy borders */
+  .hair   { @apply border-black/[0.07] dark:border-white/[0.09]; }
+
+  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.08em]; }
+  .pill { @apply inline-flex items-center gap-1 rounded-full px-2 py-[3px] text-[10.5px] font-semibold leading-none tracking-wide; }
+  .press { @apply transition-transform duration-150 ease-out active:scale-[0.97]; }
+  .icon-btn { @apply w-10 h-10 rounded-full flex items-center justify-center bg-black/[0.05] dark:bg-white/10 transition-colors hover:bg-black/10 dark:hover:bg-white/15 press; }
+  .focus-ring { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(128,128,128,0.10) 25%, rgba(128,128,128,0.20) 37%, rgba(128,128,128,0.10) 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
